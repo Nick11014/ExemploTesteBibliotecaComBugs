@@ -43,20 +43,21 @@ public class Biblioteca {
   public void adicionarLivroAcervo(Livro livro) {
     repo.adicionarLivroAcervo(livro.getISBN(), livro);
   }
-
   public void emprestarLivro(Livro livro, Usuario usuario) throws ExcecaoLivroEmprestado {
     // como os serviços atuais são bem simples, esta é
     // a única "regra de negócio" implementada nesta classe.
     // Uma implementação real tende a possuir diversas
     // outras regras de negócio
+    if (repo.livroEstaEmprestado(livro)) {
+      throw new ExcecaoLivroEmprestado();
+    }
     repo.emprestarLivro(livro, usuario);
   }
 
   public void receberLivroEmprestado(Livro livro) {
     repo.receberLivroEmprestado(livro);
   }
-
   public List<Livro> livrosEmprestadosUsuario(Usuario usuario) {
-    return repo.livrosEmprestadosUsuario(null);
+    return repo.livrosEmprestadosUsuario(usuario);
   }
 }

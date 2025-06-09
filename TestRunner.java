@@ -18,7 +18,7 @@ import org.junit.runner.notification.Failure;
 * 
 */
 public class TestRunner {
-  public static void main() {
+  public static void main(String[] args) {
     Result result = JUnitCore.runClasses(BibliotecaTest.class);
     int count;
     String msg;
